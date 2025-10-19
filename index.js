@@ -1,14 +1,3 @@
-import express from "express";
-import OpenAI from "openai";
-import bodyParser from "body-parser";
-
-const app = express();
-app.use(bodyParser.json());
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 app.post("/generate", async (req, res) => {
   const prompt = req.body.prompt;
   try {
@@ -23,5 +12,3 @@ app.post("/generate", async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
-
-app.listen(10000, () => console.log("✅ Relay running on port 10000"));
